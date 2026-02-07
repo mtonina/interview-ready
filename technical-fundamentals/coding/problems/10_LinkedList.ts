@@ -41,7 +41,14 @@ export class LinkedList<T> {
         return result;
     }
 
-    visit() {
+    visit(fn: (node: Node<T>, index: number) => void) {
+        let index = 0;
+        let p = this.head;
+        while(p){
+            fn(p, index);
+            index++;
+            p = p.next;
+        }
     }
 
     remove() {
@@ -58,7 +65,14 @@ export class LinkedList<T> {
     //find(): Node<T> {}
     //get(index: number): Node<T> {}
     //iterator(): LinkedListIterator {}
-    length: number;
+
+    length(): number {
+        let length = 0;
+        this.visit(() => {
+            length++;
+        });
+        return length;
+    }
 }
 
 const list = new LinkedList();
