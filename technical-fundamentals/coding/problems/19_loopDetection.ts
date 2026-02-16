@@ -24,4 +24,16 @@ export type Node<T> = {
 
 export default function detectLoop<T>(
   head: Node<T> | undefined,
-): Node<T> | null {}
+): Node<T> | null {
+  const map: Map<Node<T>, boolean> = new Map<Node<T>, boolean>();
+  let p = head;
+  while(p){
+    if(map.has(p)){
+      return p;
+    } else {
+      map.set(p, true);
+    }
+    p = p.next;
+  }
+  return null;
+}
