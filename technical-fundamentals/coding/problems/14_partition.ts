@@ -18,8 +18,41 @@ export type Node<T> = {
   value: T;
   next?: Node<T>;
 };
-
 export default function partition<T>(
   head: Node<T> | undefined,
   x: T,
-): Node<T> | undefined {}
+): Node<T> | undefined {
+
+  if(!head) return head;
+
+  let p = head;
+  let auxList: Node<T> = {value: {} as T};
+  const auxHead = auxList;
+  let firstHead: Node<T> | undefined = head;
+
+  while(firstHead && firstHead.value < x){
+    auxList.next = firstHead;
+    auxList = auxList.next;
+    firstHead = firstHead.next;
+  }
+
+  const lList = new LinkedList(firstHead);
+
+  lList.visit((n) => {
+    if(n.next && n.next.value < x) {
+      auxList.next = n.next;
+      n.next = n.next.next;
+      auxList = auxList.next;
+      if(n.next && !n.next.next && n.next.value < x){
+        auxList.next = n.next;
+        auxList = auxList.next;
+        n.next = undefined;
+      }
+    }
+  });
+
+  auxList.next = firstHead;
+  return auxHead.next;
+
+}
+
