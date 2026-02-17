@@ -37,6 +37,7 @@ export default class AnimalShelter {
         if(!this.list.head) return undefined;
         let ret = this.list.head?.value;
         this.list.head = this.list.head.next;
+        if(!this.list.head) this.list.tail = undefined;
         return ret;
     }
 
