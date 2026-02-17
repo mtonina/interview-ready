@@ -29,7 +29,7 @@ export default function sumListsForwardOrder(
   return resHead.next;
 }
 
-function getNumber(list : Node<number>): number{
+function getNumber(list : Node<number> | undefined): number{
   if(!list) return 0;
   const lList = new LinkedList(list);
   let str = "";

@@ -15,15 +15,15 @@ export default function intersection<T>(
   list1: Node<T> | undefined,
   list2: Node<T> | undefined,
 ): Node<T> | undefined {
-  const map: Map<Node<T>, boolean> = new Map<Node<T>, boolean>();
+  const set: Set<Node<T>> = new Set<Node<T>>();
   const lList1 = new LinkedList(list1);
   lList1.visit((n) => {
-    map.set(n, true);
+    set.add(n);
   });
   let p = list2;
   while(p){
-    if(map.has(p)) return p;
+    if(set.has(p)) return p;
     p = p.next;
   }
-
+  return undefined;
 }

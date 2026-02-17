@@ -30,6 +30,7 @@ export default function deleteMiddleNode<T>(
       node.next = node.next.next;
       return lList.head;
     }
+    return null;
   });
   return head;
 }
