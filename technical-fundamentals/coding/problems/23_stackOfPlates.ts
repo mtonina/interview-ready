@@ -37,6 +37,15 @@ export default class StackOfPlates<T> {
         return result;
     }
 
+    popAt(index: number): T | undefined {
+        const resStack: T[] | undefined = this.substacks[index];
+        const res = resStack.pop();
+        if(resStack.length === 0){
+            this.substacks = this.substacks.filter((n) => n.length > 0);
+        }
+        return res;
+    }
+
     //this had mod sense with my first approach, but now it's working so I keep it
     private getCurrentSubstack(): T[]{
         if(this.substacks.length === 0){
