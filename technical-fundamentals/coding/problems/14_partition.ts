@@ -23,6 +23,23 @@ export default function partition<T>(
   x: T,
 ): Node<T> | undefined {
 
+  const lList = new LinkedList<T>(head);
+  const front = lList.filter((n) => {
+    return n.value < x;
+  });
+  const back = lList.filter((n) => {
+    return n.value >= x;
+  });
+
+  return front.merge(back).head;
+}
+
+//I made this without filter() and merge()
+export function partition2<T>(
+  head: Node<T> | undefined,
+  x: T,
+): Node<T> | undefined {
+
   if(!head) return head;
 
   let p = head;

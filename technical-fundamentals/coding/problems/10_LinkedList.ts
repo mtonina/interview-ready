@@ -54,7 +54,11 @@ export class LinkedList<T> {
     remove() {
     }
 
-    merge() {
+    merge(list: LinkedList<T>): LinkedList<T> {
+        if(!this.tail) return list;
+        this.tail.next = list.head;
+        this.tail = list.tail;
+        return this;
     }
 
     print() {
